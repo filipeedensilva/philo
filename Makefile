@@ -6,19 +6,19 @@
 #    By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 11:59:16 by feden-pe          #+#    #+#              #
-#    Updated: 2023/11/24 12:02:19 by feden-pe         ###   ########.fr        #
+#    Updated: 2024/03/05 18:13:46 by feden-pe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = #-Wall -Wextra -Werror
 
 RM = rm -f
 
 SRC = main.c \
-      check.c \
-      utils.c
+      parse_args.c \
+	  parse_utils.c \
 
 NAME = philo
 OBJ = ${addprefix ./obj/,${SRC:%.c=%.o}}
