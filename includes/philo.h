@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:26:28 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/05 19:02:54 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/03/05 19:51:10 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,22 @@ typedef struct	s_data
 	int	num_times_eat;
 }		t_data;
 
+typedef struct s_philo
+{
+	int				id;
+	struct s_philo *next;
+}		t_philo;
+
 // Parsing arguments
-int		parse_args(int ac, char **av);
+void	parse_args(int ac, char **av);
+int		check_args(void);
+
+// Parsing utils
 int		ft_atoi(char *str);
 int		is_allowed(int num);
 
 // Struct functions
 t_data	*data(void);
+void	init_struct(void);
 
 #endif
