@@ -6,13 +6,13 @@
 #    By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 11:59:16 by feden-pe          #+#    #+#              #
-#    Updated: 2024/03/05 19:38:48 by feden-pe         ###   ########.fr        #
+#    Updated: 2024/03/06 18:13:42 by feden-pe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CFLAGS = #-Wall -Wextra -Werror
+CFLAGS = -fsanitize=thread -g #-Wall -Wextra -Werror
 
 RM = rm -f
 

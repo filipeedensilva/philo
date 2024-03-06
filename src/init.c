@@ -6,63 +6,75 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:37:03 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/05 19:51:48 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/03/06 17:55:15 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+#include <pthread.h>
 
-t_philo	*find_tail(t_philo *head)
+void	print_philos(t_data *data)
 {
-	t_philo	*current;
+	int	i;
 
-	if (!head)
-		return (NULL);
-	current = head;
-	while (current->next)
-		current = current->next;
-	return (current);
-}
-
-void	add_node(t_philo **head, int index)
-{
-	t_philo	*new;
-	t_philo	*current;
-
-	new = malloc(sizeof(t_philo));
-	new->id = ++index;
-	if (!*head)
+	i = 0;
+	while (i < data->num_philos)
 	{
-		*head = new;
-		return ;
-	}
-	current = find_tail(*head);
-	current->next = new;
-}
-
-void	print_philos(t_philo *head)
-{
-	t_philo	*current;
-
-	current = head;
-	while (current)
-	{
-		printf("ID: %d\n", current->id);
-		current = current->next;
+		printf("\nPhilo id: %d\n", data->philos[i].id);
+		printf("Left fork id: %d\n", data->philos[i].left_fork);
+		printf("Right fork id: %d\n", data->philos[i].right_fork);
+		i++;
 	}
 }
 
-void	init_struct(void)
+int	init_mutex(t_data *data)
 {
-	t_philo	*head;
+	int	i;
+
+	i = 0;
+	while (i < data->num_philos)
+	{
+		if (pthread_mutex_init(&(data->forks[i]), NULL))
+			return (1);
+		i++;
+	}
+	if (pthread_mutex_init(&(data->write), NULL))
+		return (1);
+	if (pthread_mutex_init(&(data->death_check), NULL))
+		return (1);
+	return (0);
+}
+
+void	init_philo(t_data *data)
+{
 	int		i;
 
 	i = 0;
-	head = NULL;
-	while (i < data()->num_philos)
+	while (i < data->num_philos)
 	{
-		add_node(&head, i);
+		data->philos[i].id = i + 1;
+		data->philos[i].num_meals = 0;
+		data->philos[i].left_fork = i + 1;
+		if (data->num_philos != 1)
+		{
+			if (i == data->num_philos - 1)
+				data->philos[i].right_fork = 1;
+			else
+				data->philos[i].right_fork = i + 2;
+		}
+		data->philos[i].data = data;
 		i++;
 	}
-	print_philos(head);
+	print_philos(data);
+}
+
+int	init(t_data *data)
+{
+	if (init_mutex(data))
+	{
+		printf("Error in creating mutexes!\n");
+		return (1);
+	}
+	init_philo(data);
+	return (0);
 }

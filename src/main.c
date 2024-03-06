@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 17:27:18 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/05 19:51:26 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/03/06 17:31:40 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ t_data	*data(void)
 
 int	main(int ac, char **av)
 {
-	parse_args(ac, av);
-	if (!check_args())
+	t_data	data;
+	parse_args(&data, ac, av);
+	if (check_args(&data))
 		return (1);
-	init_struct();
+	if (init(&data))
+		return (2);
 	return (0);
 }
