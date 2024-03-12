@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:26:28 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/06 17:31:16 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/03/12 19:29:47 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ struct	s_data
 	int				time_sleep;
 	int				num_times_eat;
 	int				death_flag;
-	int				start;
+	long long		start;
 	pthread_mutex_t	write;
 	pthread_mutex_t	death_check;
 	pthread_mutex_t	forks[200];
@@ -60,5 +60,19 @@ int		is_allowed(int num);
 // Struct functions
 t_data	*data(void);
 int		init(t_data *data);
+
+// Time function
+unsigned long long		get_time(void);
+
+
+int	init_threads(t_data *data);
+
+// Write function
+void	write_msg(t_data *data, int philo, char *action);
+
+//  Utils
+int		check_death_flag(t_data *data);
+int		ft_abs(int num);
+int		check_all_ate(t_data *data, t_philo *philo);
 
 #endif

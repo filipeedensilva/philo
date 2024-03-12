@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:37:03 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/06 17:55:15 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/03/12 19:36:25 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	init_philo(t_data *data)
 		data->philos[i].data = data;
 		i++;
 	}
-	print_philos(data);
 }
 
 int	init(t_data *data)

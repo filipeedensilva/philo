@@ -6,7 +6,7 @@
 #    By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 11:59:16 by feden-pe          #+#    #+#              #
-#    Updated: 2024/03/06 18:13:42 by feden-pe         ###   ########.fr        #
+#    Updated: 2024/03/12 18:51:44 by feden-pe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,9 @@ SRC = main.c \
       parse_args.c \
 	  parse_utils.c \
 	  init.c \
+	  philo.c \
+	  time.c \
+	  write.c
 
 NAME = philo
 OBJ = ${addprefix ./obj/,${SRC:%.c=%.o}}

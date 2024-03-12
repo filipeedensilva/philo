@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/04 17:27:18 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/12 18:52:29 by feden-pe         ###   ########.fr       */
+/*   Created: 2024/03/12 17:56:32 by feden-pe          #+#    #+#             */
+/*   Updated: 2024/03/12 18:07:12 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int	main(int ac, char **av)
+unsigned long long	get_time(void)
 {
-	t_data	data;
-	parse_args(&data, ac, av);
-	if (check_args(&data))
-		return (1);
-	if (init(&data))
-		return (2);
-	init_threads(&data);
-	return (0);
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
