@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:26:28 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/12 19:29:47 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:51:11 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ struct	s_data
 	long long		start;
 	pthread_mutex_t	write;
 	pthread_mutex_t	death_check;
-	pthread_mutex_t	forks[200];
-	t_philo			philos[200];
+	pthread_mutex_t	forks[250];
+	t_philo			philos[250];
 };
 
 
@@ -64,8 +64,7 @@ int		init(t_data *data);
 // Time function
 unsigned long long		get_time(void);
 
-
-int	init_threads(t_data *data);
+int		init_threads(t_data *data);
 
 // Write function
 void	write_msg(t_data *data, int philo, char *action);

@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:37:03 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/12 19:36:25 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/03/13 14:54:47 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,12 @@ void	print_philos(t_data *data)
 {
 	int	i;
 
-	i = 0;
-	while (i < data->num_philos)
+	i = -1;
+	while (++i < data->num_philos)
 	{
 		printf("\nPhilo id: %d\n", data->philos[i].id);
 		printf("Left fork id: %d\n", data->philos[i].left_fork);
 		printf("Right fork id: %d\n", data->philos[i].right_fork);
-		i++;
 	}
 }
 
@@ -31,12 +30,11 @@ int	init_mutex(t_data *data)
 {
 	int	i;
 
-	i = 0;
-	while (i < data->num_philos)
+	i = -1;
+	while (++i < data->num_philos)
 	{
 		if (pthread_mutex_init(&(data->forks[i]), NULL))
 			return (1);
-		i++;
 	}
 	if (pthread_mutex_init(&(data->write), NULL))
 		return (1);
@@ -49,8 +47,8 @@ void	init_philo(t_data *data)
 {
 	int		i;
 
-	i = 0;
-	while (i < data->num_philos)
+	i = -1;
+	while (++i < data->num_philos)
 	{
 		data->philos[i].id = i + 1;
 		data->philos[i].num_meals = 0;
@@ -63,7 +61,6 @@ void	init_philo(t_data *data)
 				data->philos[i].right_fork = i + 2;
 		}
 		data->philos[i].data = data;
-		i++;
 	}
 }
 

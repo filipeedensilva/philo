@@ -6,13 +6,14 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 18:04:54 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/12 19:38:44 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:50:59 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+#include <pthread.h>
 
-void	eating(t_data *data, t_philo *philo)
+void	eating_action(t_data *data, t_philo *philo)
 {
 	if (philo->id % 2 == 0)
 	{
@@ -33,7 +34,7 @@ void	eating(t_data *data, t_philo *philo)
 	philo->last_meal = get_time();
 	philo->num_meals++;
 	pthread_mutex_unlock(&data->death_check);
-	usleep(data->time_eat);
+	usleep(data->time_eat * 1000);
 	pthread_mutex_unlock(&data->forks[philo->left_fork]);
 	pthread_mutex_unlock(&data->forks[philo->right_fork]);
 }
@@ -49,32 +50,32 @@ void	*routine(void *philoo)
 		return (write_msg(data, philo->id, "has taken a fork"), NULL);
 	while (!check_death_flag(data))
 	{
-		eating(data, philo);
-		if (philo->num_meals == data->num_times_eat)
+		eating_action(data, philo);
+		if (data->num_times_eat != '\2' && \
+			philo->num_meals == data->num_times_eat)
 			break ;
 		write_msg(data, philo->id, "is sleeping");
-		usleep(data->time_sleep);
+		usleep(data->time_sleep * 1000);
 		write_msg(data, philo->id, "is thinking");
-		usleep(ft_abs(data->time_eat - data->time_sleep));
-		usleep(500);
+		usleep(ft_abs(data->time_eat - data->time_sleep) * 1000);
 	}
 	return (NULL);
 }
 
-void	supervisor(t_data *data, t_philo *philo)
+void	checking_threads(t_data *data, t_philo *philo)
 {
 	int	i;
 
 	while (!check_death_flag(data))
 	{
-		i = 0;
-		while (i < data->num_philos && !check_death_flag(data))
+		i = -1;
+		while (++i < data->num_philos && !check_death_flag(data))
 		{
-			if (check_all_ate(data, philo))
+			if (data->num_times_eat != '\2' && check_all_ate(data, philo))
 				return ;
 			pthread_mutex_lock(&data->death_check);
 			if (get_time() - philo[i].last_meal >= \
-				data->time_die)
+				(long long unsigned int) data->time_die)
 			{
 				write_msg(data, philo->id, "died");
 				pthread_mutex_lock(&data->write);
@@ -85,7 +86,6 @@ void	supervisor(t_data *data, t_philo *philo)
 			}
 			else
 				pthread_mutex_unlock(&data->death_check);
-			i++;
 		}
 	}
 }
@@ -94,18 +94,12 @@ void	join_threads(t_data *data, t_philo *philo)
 {
 	int	i;
 
-	i = 0;
-	while (i < data->num_philos)
-	{
+	i = -1;
+	while (++i < data->num_philos)
 		pthread_join(philo[i].thread, NULL);
-		i++;
-	}
-	i = 0;
-	while (i < data->num_philos)
-	{
+	i = -1;
+	while (++i < data->num_philos)
 		pthread_mutex_destroy(&data->forks[i]);
-		i++;
-	}
 	pthread_mutex_destroy(&data->write);
 	pthread_mutex_destroy(&data->death_check);
 }
@@ -115,19 +109,18 @@ int	init_threads(t_data *data)
 	int	i;
 	t_philo	*philo;
 
-	i = 0;
+	i = -1;
 	philo = data->philos;
 	data->start = get_time();
-	while (i < data->num_philos)
+	while (++i < data->num_philos)
 	{
 		if (pthread_create(&(philo[i].thread), NULL, routine, &(philo[i])))
 			return (1);
 		pthread_mutex_lock(&data->death_check);
 		philo[i].last_meal = get_time();
 		pthread_mutex_unlock(&data->death_check);
-		i++;
 	}
-	supervisor(data, philo);
+	checking_threads(data, philo);
 	join_threads(data, philo);
 	return (0);
 }
