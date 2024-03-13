@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 18:04:54 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/13 15:50:59 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:42:56 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	*routine(void *philoo)
 		usleep(data->time_sleep * 1000);
 		write_msg(data, philo->id, "is thinking");
 		usleep(ft_abs(data->time_eat - data->time_sleep) * 1000);
+		usleep(400);
 	}
 	return (NULL);
 }
@@ -75,7 +76,7 @@ void	checking_threads(t_data *data, t_philo *philo)
 				return ;
 			pthread_mutex_lock(&data->death_check);
 			if (get_time() - philo[i].last_meal >= \
-				(long long unsigned int) data->time_die)
+				data->time_die)
 			{
 				write_msg(data, philo->id, "died");
 				pthread_mutex_lock(&data->write);
