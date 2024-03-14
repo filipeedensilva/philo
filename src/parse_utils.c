@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 18:07:47 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/05 19:04:27 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:26:08 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_atoi(char *str)
 
 int	is_allowed(int num)
 {
-	if (num <= 0)
+	if (num <= 0 || num > INT_MAX)
 		return (0);
 	return (1);
 }

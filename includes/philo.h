@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:26:28 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/13 15:51:11 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:26:22 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <unistd.h>
+# include <limits.h>
 # include <sys/time.h>
 
 typedef struct s_data	t_data;
