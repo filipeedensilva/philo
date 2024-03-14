@@ -6,12 +6,11 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 18:04:54 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/13 16:42:56 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/03/14 01:19:50 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-#include <pthread.h>
 
 void	eating_action(t_data *data, t_philo *philo)
 {
