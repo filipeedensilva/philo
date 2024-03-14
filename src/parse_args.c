@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 17:47:05 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/14 18:28:05 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:41:33 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ int	check_args(t_data *data)
 		flag = error_msg();
 	else if (!is_allowed(data->time_sleep))
 		flag = error_msg();
-	else if (data->num_times_eat != '\2'\
-		&& !is_allowed(data->num_times_eat))
+	else if (!is_allowed(data->num_times_eat))
 		flag = error_msg();
 	return (flag);
 }
@@ -45,12 +44,12 @@ void	parse_args(t_data *data, int ac, char **av)
 		data->time_die = ft_atoi(av[2]);
 		data->time_eat = ft_atoi(av[3]);
 		data->time_sleep = ft_atoi(av[4]);
-		if (ac == 6)
+		if (ac == 6 && av[5] && av[5][0] == '\0')
+			data->num_times_eat = INT_MAX;
+		else if (ac == 6)
 			data->num_times_eat = ft_atoi(av[5]);
-		else if (ac == 6 && av[5] && av[5][0] == '\0')
-			data->num_times_eat = '\2';
 		else
-			data->num_times_eat = '\2';
+			data->num_times_eat = INT_MAX;
 		data->death_flag = 0;
 	}
 	else

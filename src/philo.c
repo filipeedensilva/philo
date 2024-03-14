@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 18:04:54 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/14 01:19:50 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:37:37 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ void	*routine(void *philoo)
 	while (!check_death_flag(data))
 	{
 		eating_action(data, philo);
-		if (data->num_times_eat != '\2' && \
-			philo->num_meals == data->num_times_eat)
+		if (philo->num_meals == data->num_times_eat)
 			break ;
 		write_msg(data, philo->id, "is sleeping");
 		usleep(data->time_sleep * 1000);
@@ -71,7 +70,7 @@ void	checking_threads(t_data *data, t_philo *philo)
 		i = -1;
 		while (++i < data->num_philos && !check_death_flag(data))
 		{
-			if (data->num_times_eat != '\2' && check_all_ate(data, philo))
+			if (check_all_ate(data, philo))
 				return ;
 			pthread_mutex_lock(&data->death_check);
 			if (get_time() - philo[i].last_meal >= \

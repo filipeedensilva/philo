@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 18:07:47 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/14 18:26:08 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:36:34 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,14 @@ int	ft_atoi(char *str)
 		res = res * 10 + (*str - '0');
 		str++;
 	}
+	if (*str && !(*str >= '0' && *str <= '9'))
+		return ('\2');
 	return (res * sign);
 }
 
 int	is_allowed(int num)
 {
-	if (num <= 0 || num > INT_MAX)
+	if (num == '\2' || num <= 0 || num > INT_MAX)
 		return (0);
 	return (1);
 }
