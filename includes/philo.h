@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:26:28 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/14 18:26:22 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:54:23 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,30 +49,30 @@ struct	s_data
 	t_philo			philos[250];
 };
 
-
 // Parsing arguments
-void	parse_args(t_data *data, int ac, char **av);
-int		check_args(t_data *data);
+void				parse_args(t_data *data, int ac, char **av);
+int					check_args(t_data *data);
 
 // Parsing utils
-int		ft_atoi(char *str);
-int		is_allowed(int num);
+int					ft_atoi(char *str);
+int					is_allowed(int num);
 
 // Struct functions
-t_data	*data(void);
-int		init(t_data *data);
+t_data				*data(void);
+int					init(t_data *data);
 
 // Time function
-unsigned long long		get_time(void);
-
-int		init_threads(t_data *data);
+unsigned long long	get_time(void);
 
 // Write function
-void	write_msg(t_data *data, int philo, char *action);
+void				write_msg(t_data *data, int philo, char *action);
 
 //  Utils
-int		check_death_flag(t_data *data);
-int		ft_abs(int num);
-int		check_all_ate(t_data *data, t_philo *philo);
+int					check_death_flag(t_data *data);
+int					ft_abs(int num);
+int					check_all_ate(t_data *data, t_philo *philo);
+
+// Initiazlize threads
+int					init_threads(t_data *data);
 
 #endif

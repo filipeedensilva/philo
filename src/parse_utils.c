@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 18:07:47 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/14 18:36:34 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:48:02 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_atoi(char *str)
 
 	res = 0;
 	sign = 1;
-	while (*str && (*str >= '\t' && *str <= '\r' || *str == ' '))
+	while (*str && ((*str >= '\t' && *str <= '\r') || (*str == ' ')))
 		str++;
 	if (*str == '-')
 	{

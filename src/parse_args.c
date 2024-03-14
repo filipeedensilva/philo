@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 17:47:05 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/14 18:41:33 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:51:09 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,10 @@ void	parse_args(t_data *data, int ac, char **av)
 		data->death_flag = 0;
 	}
 	else
-		printf("Wrong number of arguments!\nUsage: ./philo 'number_of_philosophers' 'time_to_die' 'time_to_eat' 'time_to_sleep' '[number_of_times_each_philosopher_must_eat]'\n");
+	{
+		printf("Wrong number of arguments!\nUsage: ./philo ");
+		printf("'number_of_philosophers' 'time_to_die' 'time_to_eat' ");
+		printf("'time_to_sleep' ");
+		printf("'[number_of_times_each_philosopher_must_eat]'\n");
+	}
 }

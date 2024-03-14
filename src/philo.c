@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 18:04:54 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/14 18:37:37 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:48:59 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	checking_threads(t_data *data, t_philo *philo)
 				return ;
 			pthread_mutex_lock(&data->death_check);
 			if (get_time() - philo[i].last_meal >= \
-				data->time_die)
+				(long long unsigned int) data->time_die)
 			{
 				write_msg(data, philo->id, "died");
 				pthread_mutex_lock(&data->write);
@@ -105,7 +105,7 @@ void	join_threads(t_data *data, t_philo *philo)
 
 int	init_threads(t_data *data)
 {
-	int	i;
+	int		i;
 	t_philo	*philo;
 
 	i = -1;

@@ -6,13 +6,13 @@
 #    By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 11:59:16 by feden-pe          #+#    #+#              #
-#    Updated: 2024/03/14 18:39:04 by feden-pe         ###   ########.fr        #
+#    Updated: 2024/03/14 18:56:01 by feden-pe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CFLAGS = -g #-Wall -Wextra -Werror #-fsanitize=thread 
+CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=thread 
 
 RM = rm -f
 
@@ -35,6 +35,7 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 ./obj/%.o: ./src/%.c
+	@mkdir -p obj
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
