@@ -6,16 +6,16 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 18:07:47 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/14 18:48:02 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:39:52 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int	ft_atoi(char *str)
+long	ft_atol(char *str)
 {
-	int	res;
-	int	sign;
+	long	res;
+	int		sign;
 
 	res = 0;
 	sign = 1;
@@ -32,13 +32,13 @@ int	ft_atoi(char *str)
 		str++;
 	}
 	if (*str && !(*str >= '0' && *str <= '9'))
-		return ('\2');
+		return (-10);
 	return (res * sign);
 }
 
-int	is_allowed(int num)
+int	is_allowed(long num)
 {
-	if (num == '\2' || num <= 0 || num > INT_MAX)
+	if (num <= 0 || num < INT_MIN || num > INT_MAX)
 		return (0);
 	return (1);
 }

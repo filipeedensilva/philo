@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:26:28 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/14 18:54:23 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:40:32 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ struct s_philo
 
 struct	s_data
 {
-	int				num_philos;
-	int				time_die;
-	int				time_eat;
-	int				time_sleep;
-	int				num_times_eat;
-	int				death_flag;
+	long			num_philos;
+	long			time_die;
+	long			time_eat;
+	long			time_sleep;
+	long			num_times_eat;
+	long			death_flag;
 	long long		start;
 	pthread_mutex_t	write;
 	pthread_mutex_t	death_check;
@@ -54,8 +54,8 @@ void				parse_args(t_data *data, int ac, char **av);
 int					check_args(t_data *data);
 
 // Parsing utils
-int					ft_atoi(char *str);
-int					is_allowed(int num);
+long				ft_atol(char *str);
+int					is_allowed(long num);
 
 // Struct functions
 t_data				*data(void);

@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 17:47:05 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/14 18:51:09 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:41:37 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,12 @@ void	parse_args(t_data *data, int ac, char **av)
 {
 	if (ac == 5 || ac == 6)
 	{
-		data->num_philos = ft_atoi(av[1]);
-		data->time_die = ft_atoi(av[2]);
-		data->time_eat = ft_atoi(av[3]);
-		data->time_sleep = ft_atoi(av[4]);
-		if (ac == 6 && av[5] && av[5][0] == '\0')
-			data->num_times_eat = INT_MAX;
-		else if (ac == 6)
-			data->num_times_eat = ft_atoi(av[5]);
+		data->num_philos = ft_atol(av[1]);
+		data->time_die = ft_atol(av[2]);
+		data->time_eat = ft_atol(av[3]);
+		data->time_sleep = ft_atol(av[4]);
+		if (av[5] && av[5][0])
+			data->num_times_eat = ft_atol(av[5]);
 		else
 			data->num_times_eat = INT_MAX;
 		data->death_flag = 0;
