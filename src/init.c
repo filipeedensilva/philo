@@ -6,12 +6,11 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:37:03 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/13 14:54:47 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:59:22 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-#include <pthread.h>
 
 void	print_philos(t_data *data)
 {

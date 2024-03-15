@@ -6,7 +6,7 @@
 /*   By: feden-pe <feden-pe@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 18:04:54 by feden-pe          #+#    #+#             */
-/*   Updated: 2024/03/14 18:48:59 by feden-pe         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:00:14 by feden-pe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,10 @@ int	init_threads(t_data *data)
 	while (++i < data->num_philos)
 	{
 		if (pthread_create(&(philo[i].thread), NULL, routine, &(philo[i])))
+		{
+			printf("Error initializing threads!\n");
 			return (1);
+		}
 		pthread_mutex_lock(&data->death_check);
 		philo[i].last_meal = get_time();
 		pthread_mutex_unlock(&data->death_check);
